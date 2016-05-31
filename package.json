@@ -1,6 +1,6 @@
 {
   "name": "redux-director",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Redux director bindings",
   "main": "dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "url": "https://github.com/mandeepbrar/redux-director.git"
   },
   "keywords": [],
-  "author": "Your name here",
+  "author": "Mandeep Singh Brar",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
