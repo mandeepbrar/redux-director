@@ -75,6 +75,12 @@ function sidebar() {
   )
 }
 
+//middleware for a route
+const mymw = (ctx, next) => {
+  console.log("store state", ctx.state, ctx);
+  next();
+}
+
 // define the routes
 //route starts with the name of the router e.g. home, contact below
 //route contains the patter that should be matched by director
@@ -124,6 +130,7 @@ const routes= {
           <Contact/>
         )
       },
+      middlewares: [mymw],
       sidebar: sidebar
     }
   }
@@ -136,6 +143,17 @@ Router.setRoutes(routes);
 
 #### Accessing variables and route state
 A route state object is passed to the component. This state object contains route parameters that can be referenced using routestate.params. The routestate also contains any data that you would like to pass from the route definition to the component.
+
+####Middleware
+Middleware can be added to the definition of routes by specifiying middlewares in the route. Please refer doc of redux-router-director for more info. 
+
+```
+//middleware for a route
+const mymw = (ctx, next) => {
+  console.log("store state", ctx.state, ctx);
+  next();
+}
+```
 
 #### Listening to the events
 The change events are available using event type '@@reduxdirector/LOCATION_CHANGE' for a reducer or saga. 
@@ -156,10 +174,12 @@ const reducers = {
 module.exports = combineReducers(reducers);
 ```
 
+
 ##Other methods
 Other methods like redirect and getUrl are available on the router.
 
 redirect(url)
+
 dispatch(url)
 
 ##License
