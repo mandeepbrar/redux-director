@@ -1,5 +1,5 @@
 # redux-director
-Redux bindings to director. This has been inspired from [redux-router-director]
+Redux bindings to [director](https://github.com/flatiron/director). This has been inspired from [redux-router-director](https://www.npmjs.com/package/redux-router-director)
 
 ##Installation
 
