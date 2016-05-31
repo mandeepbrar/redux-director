@@ -1,5 +1,5 @@
 # redux-director
-Redux bindings to director
+Redux bindings to director. This has been inspired from [redux-router-director]
 
 ##Installation
 
@@ -9,7 +9,7 @@ Redux bindings to director
 Connect the router to the store.
 
 index.js
-
+```
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -28,9 +28,11 @@ render(
   document.getElementById('app')
 );
 
+```
+
 
 stores/index.js
-
+```
 import { combineReducers } from 'redux';
 import {Reducer} from 'redux-director';
 
@@ -40,10 +42,10 @@ const reducers = {
 
 };
 module.exports = combineReducers(reducers);
-
+```
 
 stores/main.js
-
+```
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Contact} from './Contact';
@@ -101,3 +103,4 @@ class AppComponent extends React.Component {
 }
 
 
+```
