@@ -64,7 +64,7 @@ import React from 'react';
 
 const Sidebar =(props) =>(
   <div>
-    Sidebar page
+    Sidebar
     <ul>
       <li>
         <a href="#/">home</a>
