@@ -4,6 +4,7 @@ Redux bindings to director. This has been inspired from [redux-router-director]
 ##Installation
 
 npm install director --save
+
 npm install redux-director --save
 
 ##Usage
