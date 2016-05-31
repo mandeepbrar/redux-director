@@ -57,35 +57,6 @@ class App extends Component {
 
 ```
 
-Sidebar is a simple component containing list of links. Clicking on these links changes the state of the router.
-
-```
-import React from 'react';
-
-const Sidebar =(props) =>(
-  <div>
-    Sidebar
-    <ul>
-      <li>
-        <a href="#/">home</a>
-      </li>
-      <li>
-        <a href="#/contact">contact</a>
-      </li>
-      <li>
-        <a href="#/route/Title">MyPage-Main</a>
-      </li>
-      <li>
-        <a href="#/route/Listing">MyPage-Listing</a>
-      </li>
-    </ul>
-  </div>
-)
-
-export {Sidebar as Sidebar};
-
-```
-
 ### Step 3: Declare routes 
 
 Set up the routes in a file. The routes are named and defined as a json below. The route name roughly acts like a state in angular ui router. Whenever a route is matched using "pattern" for the route, the components of the route are displayed in their View placeholders. e.g. In the below case View placeholder named "main" will display the components specified during the definition of routes. When the state of the router is "home", The view placholder named "main" will display Home component
@@ -207,6 +178,35 @@ const reducers = {
 
 };
 module.exports = combineReducers(reducers);
+```
+### Step 5: Navigation
+Navigation through the app is possible through simple <a> links. e.g. a Sidebar can contain links to different pages as below. Clicking on these links changes the state of the router.
+
+```
+import React from 'react';
+
+const Sidebar =(props) =>(
+  <div>
+    Sidebar
+    <ul>
+      <li>
+        <a href="#/">home</a>
+      </li>
+      <li>
+        <a href="#/contact">contact</a>
+      </li>
+      <li>
+        <a href="#/route/Title">MyPage-Main</a>
+      </li>
+      <li>
+        <a href="#/route/Listing">MyPage-Listing</a>
+      </li>
+    </ul>
+  </div>
+)
+
+export {Sidebar as Sidebar};
+
 ```
 
 
