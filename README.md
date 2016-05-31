@@ -134,6 +134,7 @@ The change events are available using event type '@@reduxdirector/LOCATION_CHANG
 
 ### Step 4: Add routes to the reducer
 Add the router reducer to the list of reducers for the application. The router reducer should be added at the highest level with the name router.i.e. the state of the router should be accessible with state.router
+
 stores/index.js
 ```
 import { combineReducers } from 'redux';
