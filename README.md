@@ -81,6 +81,8 @@ function sidebar() {
 // View named contact will display the component Contact whenever route "contact is matched.
 // This is somewhat similar to angular ui router.. 
 const routes= {
+
+  //define the home route.. 
   "home": {
     pattern:"",
     components:{
@@ -92,23 +94,27 @@ const routes= {
       sidebar:sidebar
     }
   },
-  "myvariableroute": {
+  
+  
+  "myvariableroute": { //define a route which matches a pattern with a variable var
     pattern:"/route/:var",
     components:{
       main: (routerstate) => {
         console.log(routerstate.params.var) //returns myval when you visit #/route/myval
         console.log(routerstate.data.myfield)
         return (
-          <MyPage var={routerstate.params.var} ></MyPage>
+          <MyPage var={routerstate.params.var} ></MyPage> // use var as a property to your component
         )
       },
-      sidebar:sidebar
+      sidebar:sidebar //sidebar is also available
     },
     data: {
       myfield:"myvalue"
     }
   },
-  "contact": {
+  
+  
+  "contact": { //define another contact route..
     pattern:"/contact",
     components:{
       "main": () => {
