@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "Redux director bindings",
-  "main": "",
+  "main": "dist/index.js",
   "scripts": {
     "posttest": "npm run lint",
     "dist": "webpack --env=dist",

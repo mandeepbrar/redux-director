@@ -19,7 +19,7 @@ const RouterView = connect(
                 if(compMethod) {
                     return {
                         method: compMethod,
-                        route: route
+                        route: state.router
                     }
                 }
             }
