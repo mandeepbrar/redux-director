@@ -153,6 +153,12 @@ const mymw = (ctx, next) => {
   console.log("store state", ctx.state, ctx);
   next();
 }
+
+// in the definition of the route.. include it as below
+"contact": { //define another contact route..
+    pattern:"/contact",
+    middlewares: [mymw],
+
 ```
 
 #### Listening to the events
