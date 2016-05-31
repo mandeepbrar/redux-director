@@ -124,14 +124,14 @@ const routes= {
   
   "contact": { //define another contact route..
     pattern:"/contact",
-      middlewares: [mymw],
-      components:{
-        main: () => {
-          return (
-            <Contact/>
-          )
-        },
-        sidebar: sidebar
+    middlewares: [mymw],
+    components:{
+      main: () => {
+        return (
+          <Contact/>
+        )
+      },
+      sidebar: sidebar
     }
   }
 };
