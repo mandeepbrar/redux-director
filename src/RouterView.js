@@ -14,6 +14,12 @@ const RouterView = connect(
     (state, props) => {
         if(state.router && state.router.routename) {
             let route = router.getRoute(state.router.routename)
+            if(route.component) {
+                return {
+                  method: route.component,
+                  route: state.router
+                }
+            }
             if(route.components) {
                 let compMethod = route.components[props.name]
                 if(compMethod) {

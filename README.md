@@ -140,6 +140,21 @@ const routes= {
 Router.setRoutes(routes);
 
 ```
+#### Single component in page
+
+If there is only one view in a page that changes on a route. It can be specified using a simpler way as follows. This component will be displayed on the View.
+```
+const routes= {
+  "home": {
+    pattern:"",
+    component: () => {
+        return (
+          <Home/>
+        )
+    }
+  },
+
+```
 
 #### Accessing variables and route state
 A route state object is passed to the component. This state object contains route parameters that can be referenced using routestate.params. The routestate also contains any data that you would like to pass from the route definition to the component.
