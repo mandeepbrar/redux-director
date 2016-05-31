@@ -59,7 +59,7 @@ class App extends Component {
 
 ### Step 3: Declare routes 
 
-Set up the routes in a file. The routes are named and defined as a json below. The route name roughly acts like a state in angular ui router. Whenever a route is matched using "pattern" for the route, the components of the route are displayed in their View placeholders. e.g. In the below case View placeholder named "main" will display the components specified during the definition of routes. When the state of the router is "home", The view placholder named "main" will display <Home/>
+Set up the routes in a file. The routes are named and defined as a json below. The route name roughly acts like a state in angular ui router. Whenever a route is matched using "pattern" for the route, the components of the route are displayed in their View placeholders. e.g. In the below case View placeholder named "main" will display the components specified during the definition of routes. When the state of the router is "home", The view placholder named "main" will display Home component
 
 routes.js
 ```
