@@ -1,6 +1,6 @@
 import {routerView} from './RouterView';
 import {router} from './reduxdirector';
-import reducer from './reducer';
+import {reducer} from './reducer';
 
 /*import * as utils from './utils'
 
@@ -22,7 +22,6 @@ export default {
 const Reducer=reducer
 const View=routerView
 const Router=router
-console.log("exporting  ", routerView, router, reducer);
 
 export {Reducer}
 export {View}

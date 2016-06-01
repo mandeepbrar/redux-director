@@ -3,10 +3,18 @@ import {router} from './reduxdirector';
 const reducer = (state = router.initialState, action) => {
   switch (action.type) {
     case '@@reduxdirector/LOCATION_CHANGE':
-        return action.payload;
+        let newState = Object.assign({}, action.payload);
+        newState.routeStore = router.changeRouteStore(newState.routeName, action);
+        return newState;
     default:
-        return state;
+        let routeStore = router.getRouteStore(state.routeStore, action)
+        if(routeStore == state.routeStore) {
+          return state
+        } else {
+          return Object.assign({}, state, {
+            routeStore: routeStore
+          })
+        }
   }
 };
-
-export default reducer;
+export {reducer as reducer}

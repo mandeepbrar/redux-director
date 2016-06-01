@@ -12,8 +12,8 @@ const RouterViewComp = ({ method = null, route = null}) => {
 
 const RouterView = connect(
     (state, props) => {
-        if(state.router && state.router.routename) {
-            let route = router.getRoute(state.router.routename)
+        if(state.router && state.router.routeName) {
+            let route = router.getRoute(state.router.routeName)
             if(route.component) {
                 return {
                   method: route.component,

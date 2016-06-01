@@ -20,6 +20,7 @@ let config = Object.assign({}, baseConfig, {
   externals: {
     "director": "director",
     "react": "react",
+    "redux":"redux",
     "react-redux": "react-redux"
   },
   cache: false,

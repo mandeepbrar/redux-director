@@ -131,7 +131,10 @@ const routes= {
           <Contact/>
         )
       },
-      sidebar: sidebar
+      sidebar: sidebar,
+      reducers: {
+      	myreducer
+      }
     }
   }
 };
@@ -158,6 +161,9 @@ const routes= {
 
 #### Accessing variables and route state
 A route state object is passed to the component. This state object contains route parameters that can be referenced using routestate.params. The routestate also contains any data that you would like to pass from the route definition to the component.
+
+#### Route Store
+Route specific reducers can be specified by using the 'reducers' for a route. Data is stored in router.routeStore and lost/destroyed on every route change.
 
 ####Middleware
 Middleware can be added to the definition of routes by specifiying middlewares in the route. Please refer doc of redux-router-director for more info. 

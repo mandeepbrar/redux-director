@@ -1,16 +1,17 @@
 import {
   Router
 } from 'director';
-
+import {combineReducers} from 'redux';
 class DirectorRouter {
 
   constructor() {
     this.initialState = {
       url: '',
       pattern: '',
-      routename: '',
+      routeName: '',
       data:{},
-      params: {}
+      params: {},
+      routeStore:{}
     };
     this.connect = this.connect.bind(this);
     this.getUrl = this.getUrl.bind(this);
@@ -21,11 +22,13 @@ class DirectorRouter {
     this.getRoute = this.getRoute.bind(this);
     this.handleRoute = this.handleRoute.bind(this);
     this.processRoutes = this.processRoutes.bind(this);
+    this.getRouteStore = this.getRouteStore.bind(this);
+    this.changeRouteStore = this.changeRouteStore.bind(this);
   }
 
   connect(store, homeroute, configuration) {
     this.store = store;
-    this.initialState.routename = homeroute;
+    this.initialState.routeName = homeroute;
     this.director = new Router();
     if (!configuration) {
       configuration = {
@@ -75,7 +78,7 @@ class DirectorRouter {
     });
   };
 
-  addRoute(pattern, routename, data, middlewares = []) {
+  addRoute(pattern, routeName, data, middlewares = []) {
     let router = this;
     var params = (pattern.match(/:[^\s/]+/g) || []).map(function(param) {
       return param.substr(1);
@@ -85,7 +88,7 @@ class DirectorRouter {
         type: '@@reduxdirector/LOCATION_CHANGE',
         payload: {
           url: ctx.url,
-          routename: routename,
+          routeName: routeName,
           pattern: pattern,
           data: data,
           params: ctx.params
@@ -93,6 +96,22 @@ class DirectorRouter {
       };
       router.store.dispatch(navigationAction);
     }]);
+  }
+
+  changeRouteStore(newRoute, action) {
+    let route = this.getRoute(newRoute);
+    if(route && route.reducers && Object.keys(route.reducers).length >0) {
+      this.routeStoreReducer = combineReducers(route.reducers)
+      return this.routeStoreReducer({}, action)
+    }
+    return {};
+  }
+
+  getRouteStore(state, action) {
+    if(this.routeStoreReducer) {
+      return this.routeStoreReducer(state, action);
+    }
+    return state;
   }
 
   redirect(url) {
@@ -123,9 +142,9 @@ class DirectorRouter {
     }
   }
 
-  getRoute(routename) {
+  getRoute(routeName) {
     if (this.routes) {
-      return this.routes[routename];
+      return this.routes[routeName];
     }
     return null;
   }
@@ -138,5 +157,5 @@ class DirectorRouter {
   };
 }
 
-const routeInstance = new DirectorRouter();
+var routeInstance = new DirectorRouter();
 export {routeInstance as router};
