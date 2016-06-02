@@ -2,13 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {router} from './reduxdirector';
 
-const RouterViewComp = ({ method = null, route = null}) => {
-    return (
-        <div>
-          {method?method(route):null}
-        </div>
-    );
+class RouterViewComp extends React.Component {
+    getChildContext () {
+      return { route: this.props.route };
+    }
+    render() {
+      return (
+          <div>
+            {this.props.method?this.props.method(this.props.route):null}
+          </div>
+      );
+    }
 }
+RouterViewComp.childContextTypes = {
+  route: React.PropTypes.object,
+};
 
 const RouterView = connect(
     (state, props) => {
