@@ -100,9 +100,15 @@ class DirectorRouter {
 
   changeRouteStore(newRoute, action) {
     let route = this.getRoute(newRoute);
-    if(route && route.reducers && Object.keys(route.reducers).length >0) {
-      this.routeStoreReducer = combineReducers(route.reducers)
-      return this.routeStoreReducer({}, action)
+    if(route) {
+      if(route.reducer) {
+        this.routeStoreReducer = route.reducer
+      } else if(route.reducers && Object.keys(route.reducers).length >0) {
+        this.routeStoreReducer = combineReducers(route.reducers)
+      }
+      if(this.routeStoreReducer) {
+        return this.routeStoreReducer({}, action)
+      }
     }
     return {};
   }
