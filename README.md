@@ -10,7 +10,7 @@ npm install redux-director --save
 ##Usage
 
 ### Step 1: Connect the router to the store
-Connect the router to the store. in the app file. You can specify the default route when you are connecting the router to the store.
+Connect the router to the store. in the app file. 
 
 index.js
 ```
@@ -20,8 +20,7 @@ import App from './containers/App';
 import {Router} from 'redux-director';
 
 const store = configureStore();
-//home is the default route
-Router.connect(store, 'home');
+Router.connect(store);
 
 render(
   <Provider store={store}>
@@ -140,7 +139,8 @@ const routes= {
 };
 
 //set the routes to the router
-Router.setRoutes(routes);
+//default route can be provided if there is default reducer state that needs to be loaded by default e.g. reducer for state 'home' will be loaded by default in the case below
+Router.setRoutes(routes, 'home');
 
 ```
 #### Single component in page

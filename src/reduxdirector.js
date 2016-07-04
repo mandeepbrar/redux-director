@@ -24,21 +24,41 @@ class DirectorRouter {
     this.processRoutes = this.processRoutes.bind(this);
     this.getRouteStore = this.getRouteStore.bind(this);
     this.changeRouteStore = this.changeRouteStore.bind(this);
+    this.loadRouteData = this.loadRouteData.bind(this);
+    this.loadDefaultRoute = null;
   }
 
-  connect(store, homeroute, configuration) {
+  connect(store) {
     this.store = store;
-    this.initialState.routeName = homeroute;
+    //load data if store has been set later.
+    if(this.loadDefaultRoute) {
+      this.loadDefaultRoute()
+    }
+  }
+
+  setRoutes(routesToSet, defaultRoute, defaultRouteParams, defaultRouteData, directorConfig) {
+    let router = this;
     this.director = new Router();
-    if (!configuration) {
-      configuration = {
+    if (!directorConfig) {
+      directorConfig = {
         html5history: false,
         run_handler_in_init: false,
         convert_hash_in_init: true
       }
     }
-    this.director.init().configure(configuration);
-    this.processRoutes();
+    this.routes = routesToSet;
+    this.processRoutes()
+    //load data if store has been set earlier
+    if(this.store) {
+      router.loadRouteData(defaultRoute, defaultRouteParams, defaultRouteData)
+      this.director.init().configure(directorConfig);
+    } else {
+      //create a function for delayed loading
+      this.loadDefaultRoute = () => {
+        router.loadRouteData(defaultRoute, defaultRouteParams, defaultRouteData)
+        this.director.init().configure(directorConfig);
+      }
+    }
   }
 
   handleRoute(pattern, params, handler) {
@@ -84,18 +104,22 @@ class DirectorRouter {
       return param.substr(1);
     });
     this.handleRoute.apply(null, [pattern, params, ...middlewares, (ctx) => {
-      let navigationAction = {
-        type: '@@reduxdirector/LOCATION_CHANGE',
-        payload: {
-          url: ctx.url,
-          routeName: routeName,
-          pattern: pattern,
-          data: data,
-          params: ctx.params
-        }
-      };
-      router.store.dispatch(navigationAction);
+      router.loadRouteData(routeName, ctx.params, data, pattern,  ctx.url)
     }]);
+  }
+
+  loadRouteData(routeName, params, data, pattern, url) {
+    let navigationAction = {
+      type: '@@reduxdirector/LOCATION_CHANGE',
+      payload: {
+        url: url,
+        routeName: routeName,
+        pattern: pattern,
+        data: data,
+        params: params
+      }
+    };
+    this.store.dispatch(navigationAction);
   }
 
   changeRouteStore(newRoute, action) {
@@ -126,13 +150,6 @@ class DirectorRouter {
 
   dispatch(path) {
     return this.director.dispatch(path);
-  }
-
-  setRoutes(routesToSet) {
-    this.routes = routesToSet;
-    if(this.director) {
-      this.processRoutes();
-    }
   }
 
   processRoutes() {
