@@ -1,6 +1,6 @@
 {
   "name": "redux-director",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Redux director bindings",
   "main": "dist/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "director": "^1.2.8",
+    "prop-types": "^15.6.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.4.5",

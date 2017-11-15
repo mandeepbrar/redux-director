@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {router} from './reduxdirector';
+import PropTypes from 'prop-types';
 
 class RouterViewComp extends React.Component {
     getChildContext () {
@@ -15,7 +16,7 @@ class RouterViewComp extends React.Component {
     }
 }
 RouterViewComp.childContextTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 };
 
 const RouterView = connect(
