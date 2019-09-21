@@ -8,11 +8,7 @@ class RouterViewComp extends React.Component {
       return { route: this.props.route };
     }
     render() {
-      return (
-          <div>
-            {this.props.method?this.props.method(this.props.route):null}
-          </div>
-      );
+      return this.props.method?this.props.method(this.props.route):null
     }
 }
 RouterViewComp.childContextTypes = {

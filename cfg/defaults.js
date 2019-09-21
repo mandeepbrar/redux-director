@@ -8,7 +8,6 @@
 
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
-const dfltPort = 8000;
 
 /**
  * Get the default modules object for webpack
@@ -16,14 +15,12 @@ const dfltPort = 8000;
  */
 function getDefaultModules() {
   return {
-    preLoaders: [
+    rules: [
       {
-        test: /\.(js|jsx)$/,
-        include: srcPath,
+        test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'eslint-loader'
-      }
-    ],
-    loaders: [
+      }      
     ]
   };
 }
@@ -31,6 +28,5 @@ function getDefaultModules() {
 module.exports = {
   srcPath: srcPath,
   publicPath: '/assets/',
-  port: dfltPort,
   getDefaultModules: getDefaultModules
 };
